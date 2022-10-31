@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import Menu from './components/menu/menu';
+import Content from './components/content/content';
+import MobileNav from './components/header/mobileNav';
+import Nav from './components/header/nav';
+import Crousel from './components/cardslicker/crousel';
+import MobileCrousel from './components/cardslicker/mobileCrousel';
 
+
+
+
+const staticData=[
+{static:"Dates"},
+{static:"Group size"},
+{static:"More Filter"},
+]
+
+const scrollableData=[
+  {normal:"Great for group"},
+  {normal:"famil-friendly"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+  {normal:"Animal"},
+ 
+  {normal:"Animal"},
+  {normal:"Animal"},
+]
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav></Nav>
+      <MobileNav ></MobileNav>
+      <Content></Content>
+      <Menu 
+      staticName={staticData}
+      normalName={scrollableData}
+      ></Menu>
+      <Crousel></Crousel>
+      <MobileCrousel></MobileCrousel>
     </div>
   );
 }
