@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { ButtonBase } from '@mui/material';
 import Card from "./card";
+import { useState } from "react";
 const imageData=[
   {rating:'4.5',outof:"(153)",location:"United States",tagline:"Plan The Perfect New York Vacation", price:"$1234",src:"https://a0.muscache.com/im/pictures/lombard/MtTemplate-2496585-active_media/original/8d64c46c-96ee-4509-bc94-51c61d61d742.jpg?im_w=480", },
   {rating:'3.5',outof:"(90)",location:"spain",tagline:"Design your trip to Barcelona with Gemma", price:"$1234",src:"https://a0.muscache.com/im/pictures/lombard/MtTemplate-2488061-active_media/original/6b9c31a3-de0d-4413-ba1c-5a8f107c7b37.jpg?im_w=1440", },
@@ -24,6 +25,25 @@ const Crousel = () => {
   const sliderRef = useRef(null);
   useEffect(() => {
     console.log(sliderRef);
+  }, []);
+
+  const [slides,setSlides]=useState(6)
+  useEffect(() => {
+    const handleWindowResize = () => {
+      if (window.innerWidth <= 850) {
+        setSlides(4)
+      } else {
+        setSlides(6)
+      }
+    };
+
+    handleWindowResize(); // Set the initial anchor direction
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
   }, []);
   return (
     <div className="container">
@@ -54,8 +74,8 @@ const Crousel = () => {
           dots="false"
           dotsClass="slick-dots line-indicator"
           ref={sliderRef}
-          slidesToShow={6}
-          slidesToScroll={6}
+          slidesToShow={slides}
+          slidesToScroll={slides}
           infinite="false"
           customPaging={(i) => (
             <div
